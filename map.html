@@ -59,23 +59,23 @@
           }));
           }*/
 
-          moveMarker();
-      }
-
-      function moveMarker() {
-          fraction = 0;
-          interval = window.setInterval(function () {
+          function moveMarker() {
+            fraction = 0;
+            interval = window.setInterval(function () {
 
               fraction += .5;
 
 
-                  var pos = google.maps.geometry.spherical.interpolate(startPoint,endPoint, fraction/100)
+              var pos = google.maps.geometry.spherical.interpolate(startPoint,endPoint, fraction/100)
               marker.setPosition(pos);
               map.panTo(pos);
               if (fraction >= 100) {
-                  window.clearInterval(interval);
+                window.clearInterval(interval);
               }
           }, 50);
+        }
+
+        moveMarker();
       }
 
     </script>
