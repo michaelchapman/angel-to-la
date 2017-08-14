@@ -1,0 +1,95 @@
+<html>
+  <head>
+    <title>Angel to LA</title>
+    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry'/>
+    <script type='javascript'>
+      // NOTES
+      // total distance: 9558104
+      // half distance: 4779052
+
+      var map;
+      var path;
+      var marker;
+
+      var startPoint = new google.maps.LatLng(51.531284, -0.106979); // Angel
+      var endPoint = new google.maps.LatLng(34.134065, -118.321371); // Hollywood sign
+
+      function initialize() {
+          var myOptions = {
+              zoom: 5,
+              center: startPoint,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+
+          map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+
+          route = new google.maps.Polyline({
+              path: [
+              startPoint,
+              endPoint],
+              geodesic: true,
+              map: map
+          });
+
+          marker = new google.maps.Marker({
+              position: startPoint,
+              map: map
+          });
+
+          // PLAYGROUND
+          //var lengthInMeters = google.maps.geometry.spherical.computeLength(route.getPath());
+          //console.log("polyline is "+lengthInMeters+" long");
+          //console.log(route.GetPointAtDistance(100));
+
+          /*marker2 = new google.maps.Marker({
+              position: route.GetPointAtDistance(4779052),
+              map: map
+          });*/
+
+          /*var points = route.GetPointsAtDistance(9558104);
+          console.log(points);
+
+          for (var i=0; i<points.length; i++) {
+            map.addOverlay(new google.maps.Marker({
+              position: points[i],
+              map: map
+          }));
+          }*/
+
+          moveMarker();
+      }
+
+      function moveMarker() {
+          fraction = 0;
+          interval = window.setInterval(function () {
+
+              fraction += .5;
+
+
+                  var pos = google.maps.geometry.spherical.interpolate(startPoint,endPoint, fraction/100)
+              marker.setPosition(pos);
+              map.panTo(pos);
+              if (fraction >= 100) {
+                  window.clearInterval(interval);
+              }
+          }, 50);
+      }
+
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    
+    <style>
+      html, body {
+          height: 100%;
+      }
+      #map-canvas {
+          height: 100%;
+          width: 100%;
+      }
+    </style>
+    
+  </head>
+  <body>
+    <div id="map-canvas"></div>
+  </body>
+</html>
