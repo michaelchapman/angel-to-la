@@ -11,9 +11,8 @@
       var map;
       var path;
       var marker;
-
-      var startPoint = new google.maps.LatLng(51.531284, -0.106979); // Angel
-      var endPoint = new google.maps.LatLng(34.134065, -118.321371); // Hollywood sign
+      var startPoint;
+      var endPoint;
 
       function initialize() {
           var myOptions = {
@@ -21,6 +20,9 @@
               center: startPoint,
               mapTypeId: google.maps.MapTypeId.ROADMAP
           };
+        
+          var startPoint = new google.maps.LatLng(51.531284, -0.106979); // Angel
+          var endPoint = new google.maps.LatLng(34.134065, -118.321371); // Hollywood sign
 
           map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
 
