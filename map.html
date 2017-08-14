@@ -1,7 +1,8 @@
 <html>
   <head>
     <title>Angel to LA</title>
-    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCXI1sMUZE24QibUAbIXWXalUxVZxAspxk&libraries=geometry'/>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXI1sMUZE24QibUAbIXWXalUxVZxAspxk&callback=initialize&libraries=geometry"
+  type="text/javascript"></script>
     <script type='javascript'>
       // NOTES
       // total distance: 9558104
@@ -75,7 +76,6 @@
           }, 50);
       }
 
-      google.maps.event.addDomListener(window, 'load', initialize);
     </script>
     
     <style>
