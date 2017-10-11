@@ -63,7 +63,7 @@
             fraction = 0;
             interval = window.setInterval(function () {
 
-              fraction += .5;
+              fraction += .01;
 
 
               var pos = google.maps.geometry.spherical.interpolate(startPoint,endPoint, fraction/100)
@@ -72,7 +72,7 @@
               if (fraction >= 100) {
                 window.clearInterval(interval);
               }
-          }, 500);
+          }, 50);
         }
 
         moveMarker();
